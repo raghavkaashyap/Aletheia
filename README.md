@@ -52,3 +52,53 @@ Client Application
    ┌──────┼─────────┬─────────┐
    ▼      ▼         ▼         ▼
  OpenAI  Claude   Local LLM  Future Providers
+```
+---
+
+## Key Capabilities
+
+### Smart Routing
+- Cost-aware model selection  
+- Latency-aware routing  
+- Provider fallback on failure  
+
+### Observability
+- Token usage tracking  
+- Latency histograms  
+- Error rate monitoring  
+- Structured request logs  
+
+### Policy Enforcement
+- Output schema validation  
+- Injection pattern detection  
+- Request sanitization  
+- Role-based model access  
+
+### Performance Optimization
+- Prompt caching  
+- Rate limiting  
+- Async request handling  
+- Background job processing  
+
+---
+
+## Why Aletheia?
+
+In Greek, *Aletheia* (ἀλήθεια) means “unveiling” or “truth.”
+
+Aletheia brings transparency and control to LLM infrastructure. It transforms scattered API calls into a centralized, observable, and optimized AI gateway.
+
+Instead of treating LLM calls as simple HTTP requests, Aletheia treats them as production infrastructure.
+
+---
+
+## Tech Stack
+
+- **Frontend:** Next.js + Tailwind CSS (Observability Dashboard)  
+- **Backend:** Python (FastAPI)  
+- **Data Store:** PostgreSQL (logs & metrics)  
+- **Cache / Queue:** Redis  
+- **LLM Providers:** OpenAI, Anthropic, HuggingFace (extensible adapter layer)  
+- **Deployment:** Docker + Render / AWS / Vercel  
+
+---
