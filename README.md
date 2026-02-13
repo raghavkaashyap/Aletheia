@@ -1,45 +1,54 @@
 # Aletheia
 
-**Expose the blindspots of language models. Simulate, visualize, and secure your prompts.**
+**A programmable LLM gateway for routing, optimization, and policy enforcement.**
 
-Aletheia is an interactive tool for testing how easily large language models (LLMs) can be manipulated and for exploring defenses against those attacks. It is designed for developers, researchers, and engineers who want to understand prompt injection, jailbreaks, and alignment failures in a practical way.
+Aletheia is a middleware layer that sits between your application and large language model (LLM) providers. It centralizes model routing, cost optimization, observability, and policy enforcement so teams can ship AI features without building custom infrastructure from scratch.
+
+Instead of hardcoding LLM calls throughout your backend, Aletheia provides a unified gateway that makes LLM usage scalable, reliable, and production-ready.
 
 ---
 
 ## What It Does
 
-- Simulates prompt injection attacks and jailbreak attempts  
-- Detects when a model disobeys its system prompt  
-- Highlights why the failure occurred (token-level, structural, semantic)  
-- Suggests defensive rewrites for more resilient prompts  
-- Compares vulnerability across multiple LLMs  
+- Routes requests across multiple LLM providers
+- Optimizes for cost, latency, or availability
+- Enforces request and response policies
+- Caches and deduplicates repeated prompts
+- Tracks token usage, latency, and error rates
+- Provides structured logging and observability
+- Enables provider failover and retry logic
 
 ---
 
 ## Core Use Cases
 
 | Feature | Description |
-|---------|-------------|
-| Prompt Attack Simulation | Enter a system prompt and adversarial user prompt. Aletheia tests if the model breaks. |
-| Adversarial Mode | Built-in attack patterns attempt to override system instructions automatically. |
-| Model Comparison | Run the same prompt against GPT-4, Claude, or local LLMs and compare outcomes. |
-| Prompt Hardening | Suggests safer alternatives for prompts identified as vulnerable. |
-| Breakdown Visuals | Token-level highlighting, jailbreak classifications, and structural diagrams. |
+|--------|-------------|
+| Model Routing | Automatically route traffic to OpenAI, Claude, or local models based on cost, latency, or availability rules. |
+| Policy Engine | Enforce JSON schemas, block unsafe inputs, and validate model outputs before returning responses to clients. |
+| Cost Optimization | Track token usage and dynamically route to lower-cost models when appropriate. |
+| Observability Dashboard | Monitor latency, failure rates, and usage metrics across all LLM traffic. |
+| Caching Layer | Cache deterministic responses to reduce cost and improve performance. |
+| Failover & Retry | Automatically retry transient failures or fallback to alternative providers. |
 
 ---
 
-## Why Aletheia?
+## Architecture Overview
 
-In Greek, *Aletheia* (ἀλήθεια) means “truth” or “unveiling.”  
-The goal of this project is to unveil the hidden vulnerabilities of language models so that developers can make them safer, more trustworthy, and more robust. Just as Aletheia represents uncovering what lies beneath the surface, this tool reveals the fragile points in AI systems that adversaries exploit.
-
----
-
-## Tech Stack
-
-- **Frontend:** React/Next.js + Tailwind CSS
-- **Backend:** Python (FastAPI)  
-- **LLMs:** OpenAI GPT-4, Anthropic Claude, HuggingFace Transformers (optional local models)  
-- **Extras:** Regex heuristics, adversarial prompt templates, token diffing  
-- **Deployment:** Vercel, Render, or HuggingFace Spaces  
-
+```text
+Client Application
+        │
+        ▼
+┌─────────────────────┐
+│   Aletheia Gateway  │
+│---------------------│
+│ • Routing Engine    │
+│ • Policy Engine     │
+│ • Cache Layer       │
+│ • Rate Limiter      │
+│ • Metrics Collector │
+└─────────┬───────────┘
+          │
+   ┌──────┼─────────┬─────────┐
+   ▼      ▼         ▼         ▼
+ OpenAI  Claude   Local LLM  Future Providers
