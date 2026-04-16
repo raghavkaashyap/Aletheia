@@ -1,0 +1,7 @@
+{
+	"name": "aletheia-dev",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "workspace",
+	"workspaceFolder": "/workspace",
+	"remoteUser": "vscode"
+}
