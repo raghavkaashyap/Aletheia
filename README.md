@@ -51,7 +51,7 @@ Client Application
           │
    ┌──────┼─────────┬─────────┐
    ▼      ▼         ▼         ▼
- OpenAI  Claude   Local LLM  Future Providers
+ OpenAI  Claude   Local LLM  Other Models
 ```
 ---
 
