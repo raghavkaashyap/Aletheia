@@ -18,3 +18,4 @@
 ## Conventions
 - Backend code stays in `backend/app` and tests live in `backend/tests` with pytest-style naming.
 - Environment configuration follows `.env.example` keys (APP_*, POSTGRES_*, DATABASE_URL).
+- Commit messages must start with one of: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`, `ci:` followed by a short imperative description.

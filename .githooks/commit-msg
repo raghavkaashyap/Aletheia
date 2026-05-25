@@ -1,0 +1,24 @@
+#!/bin/sh
+set -eu
+
+MESSAGE_FILE="$1"
+SUBJECT="$(head -n 1 "$MESSAGE_FILE")"
+
+case "$SUBJECT" in
+  Merge\ *|Revert\ *)
+    exit 0
+    ;;
+esac
+
+if printf "%s" "$SUBJECT" | grep -Eq '^(feat|fix|docs|chore|refactor|test|ci): .+'; then
+  exit 0
+fi
+
+cat <<'EOF' >&2
+Commit message must start with one of:
+  feat:, fix:, docs:, chore:, refactor:, test:, ci:
+
+Example:
+  feat: add redis compose service
+EOF
+exit 1
