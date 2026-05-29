@@ -19,3 +19,5 @@
 - Backend code stays in `backend/app` and tests live in `backend/tests` with pytest-style naming.
 - Environment configuration follows `.env.example` keys (APP_*, POSTGRES_*, DATABASE_URL).
 - Commit messages must start with one of: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`, `ci:` followed by a short imperative description.
+- Make small, incremental changes. Break down large features into multiple smaller changes. Avoid making sweeping changes across many files in a single commit.
+- Provide a detailed summary of every change post implementation, including the motivation, what was changed, and any relevant context or trade-offs. This helps reviewers understand the rationale behind your changes and provides a clear record for future reference.
