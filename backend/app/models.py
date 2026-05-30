@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from datetime import datetime
 
 from sqlalchemy import DateTime, Integer, String, Text
@@ -17,8 +15,8 @@ class GatewayRequest(Base):
     prompt: Mapped[str] = mapped_column(Text)
     model: Mapped[str] = mapped_column(String(100))
     provider: Mapped[str] = mapped_column(String(100))
-    response_text: Mapped[str | None] = mapped_column(Text, nullable=True)
-    latency_ms: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    response_text: Mapped[str] = mapped_column(Text, nullable=True)
+    latency_ms: Mapped[int] = mapped_column(Integer, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
