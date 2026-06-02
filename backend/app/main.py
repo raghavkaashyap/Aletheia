@@ -3,9 +3,11 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, HTTPException
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.api.gateway import router as gateway_router
 from app.db import check_connection, get_engine
 
 app = FastAPI(title="Aletheia Gateway")
+app.include_router(gateway_router)
 
 
 @app.get("/health")
