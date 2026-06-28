@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Generator
 from functools import lru_cache
 
 from sqlalchemy import create_engine, text
@@ -21,8 +22,9 @@ def get_engine() -> Engine:
 SessionLocal = sessionmaker(autoflush=False, autocommit=False)
 
 
-def get_session() -> Session:
-    return SessionLocal(bind=get_engine())
+def get_session() -> Generator[Session, None, None]:
+    with SessionLocal(bind=get_engine()) as session:
+        yield session
 
 
 def check_connection(engine: Engine) -> None:
