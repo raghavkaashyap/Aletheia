@@ -38,7 +38,7 @@ def gateway_chat(payload: GatewayRequest) -> GatewayResponse:
     except ProviderError as exc:
         error_detail = GatewayErrorDetail(
             error="provider_error",
-            message=exc.message,
+            message=exc.public_message,
         )
         raise HTTPException(status_code=502, detail=error_detail.model_dump()) from exc
 
