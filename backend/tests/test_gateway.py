@@ -81,3 +81,19 @@ def test_gateway_chat_invalid(client: TestClient) -> None:
     response = client.post("/v1/gateway/chat", json={})
 
     assert response.status_code == 422
+
+
+def test_gateway_chat_provider_error_maps_to_502() -> None:
+    client = TestClient(app)
+    response = client.post(
+        "/v1/gateway/chat",
+        json={"prompt": "Hello", "model": "mock-error"},
+    )
+
+    assert response.status_code == 502
+    assert response.json() == {
+        "detail": {
+            "error": "provider_error",
+            "message": "Provider request failed",
+        }
+    }
