@@ -25,6 +25,11 @@ class GatewayResponse(BaseModel):
     latency_ms: int
 
 
+class GatewayErrorDetail(BaseModel):
+    error: str
+    message: str
+
+
 @router.post("/chat", response_model=GatewayResponse)
 def gateway_chat(payload: GatewayRequest) -> GatewayResponse:
     request_id = uuid.uuid4().hex
